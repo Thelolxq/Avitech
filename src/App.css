@@ -1,0 +1,91 @@
+@font-face {
+  font-family: "biryani";
+  src: url("/src/fonts/Biryani/Biryani-ExtraBold.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "biryaniRegular";
+  src: url("/src/fonts/Biryani/Biryani-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'bungee';
+  src: url('/src/fonts/Bungee/Bungee-Regular.ttf') format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+.bungee{
+  font-family: "bungee";
+}
+
+.biryani {
+  font-family: "biryani";
+}
+.biryaniRegular{
+  font-family: "biryaniRegular";
+}
+.selected {
+  color: #F5E914;
+  transform: scale(1.1);
+  transition-duration: 250ms;
+
+}
+.textParrafColor{
+  color: #2d2c2c;
+}
+
+.textColor{
+  color: #F5E914;
+}
+.bgcolor{
+  background: #F5E914;
+}
+.gradient {
+  background: rgb(255, 255, 255);
+  background: linear-gradient(
+    140deg,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(255, 255, 255, 1) 50%,
+    rgba(255, 255, 255, 0.553) 50%
+  );
+}
+
+@keyframes entrada {
+  from{
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to{
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+}
+.entrada{
+  animation: entrada 0.3s forwards;
+}
+.pantallas{
+  height: 300vh;
+}
+
+@keyframes slideIn{
+  0%{
+    opacity: 0;
+    transform: translateX(-300px);
+  }40%{
+    opacity: 1;
+    transform: translateX(0);
+  }60%{
+    opacity: 1;
+    transform: translateX(0);
+  }
+  100%{
+    opacity: 0;
+    transform: translateX(0);
+  }
+}
+.slide-div{
+  animation: slideIn 2s infinite alternate-reverse;
+}
