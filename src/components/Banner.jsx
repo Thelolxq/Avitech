@@ -8,14 +8,18 @@ const Banner = () => {
       <div className="w-full h-72 overflow-hidden -top-16 relative flex items-center justify-end">
         <div className="h-full absolute z-10 gradient w-full"></div>
         <img src={BannerPollos} className="w-full h-full" alt="banner pollos" />
+      
         <div className="h-48 absolute w-10 z-10 bgcolor"></div>
+       
         <div className="absolute z-10 w-44 h-44 left-1/2 transform -translate-x-1/2 hidden lg:block">
+       
           <img
             src={EllipseBanner}
             className="w-full h-full rounded-full"
             alt="EllipseBanner"
-          />
+            />
         </div>
+      
         <div className="absolute z-10 right-3/4 h-52 w-72 transform translate-x-3/4 translate-y-10">
           <h1 className="biryanExtraBold text-lg font-bold w-32" >Bienvenido a
             <span className="bungee textColor"> AVITECH</span></h1>
@@ -27,6 +31,7 @@ const Banner = () => {
             de soluciones tecnológicas avanzadas.
             </p>
         </div>
+       
       </div>
     </>
   );

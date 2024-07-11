@@ -68,24 +68,34 @@
 }
 .pantallas{
   height: 300vh;
+  
 }
 
-@keyframes slideIn{
-  0%{
-    opacity: 0;
-    transform: translateX(-300px);
-  }40%{
-    opacity: 1;
-    transform: translateX(0);
-  }60%{
-    opacity: 1;
-    transform: translateX(0);
-  }
-  100%{
-    opacity: 0;
-    transform: translateX(0);
-  }
+/* .preloader{
+height: 100vh;
+width: 100%;
+background: #000;
+color: #FFF;
+position: fixed;
+bottom: 0;
+left: 0;
+right: 0;
+z-index: 55;
+display: flex;
+justify-content: center;
+align-items: center;
+overflow: hidden;
 }
-.slide-div{
-  animation: slideIn 2s infinite alternate-reverse;
-}
+.texts-container{
+display: flex;
+align-items: center;
+justify-content: space-between;
+height: 60px;
+width: 250px;
+font-size: 20px;
+font-weight: 800;
+overflow: hidden;
+color: #FFF;
+
+
+} */

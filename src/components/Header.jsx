@@ -22,7 +22,8 @@ const Header = ({ classname }) => {
       <header className="w-full h-16">
         <nav className="flex relative h-full justify-between items-center px-4">
           <div className="h-32">
-            <img src={Logo} className="h-32 absolute" alt="logo" />
+            <img src={Logo} className="w-32" alt="logo" />
+       
           </div>
 
           <div className="lg:hidden absolute right-10 z-10">
@@ -30,7 +31,9 @@ const Header = ({ classname }) => {
               <img src={Hamburguer} className="h-5" alt="boton hamburguesa" />
             </button>
           </div>
+       
 
+       
           <ul
             className={`${
               show ? "block entrada" : "hidden"
