@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import Header from "../components/Header";
-import Banner from "../components/Banner";
-import Objetivo from "../components/Contenido"
-import Info from "../components/Info";
-import Fotter from "../components/Fotter";
+import Header from "./Header";
+import Banner from "./Banner";
+import Objetivo from "./Contenido"
+import Info from "./Info";
+import Fotter from "./Fotter";
 import { motion, useScroll } from "framer-motion";
-import '../App.css'
+import '../../App.css'
 // import Preloader from "./Preloader";
 const page = () => {
   const {scrollYProgress} = useScroll()

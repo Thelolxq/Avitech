@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import "../App.css";
-import Logo from "../assets/Avitech logo.png";
+import "../../App.css";
+import Logo from "../../assets/Avitech logo.png";
 import { Link } from "react-router-dom";
-import Hamburguer from "../icons/menu.png";
+import Hamburguer from "../../icons/menu.png";
 
 const Header = ({ classname }) => {
   const [option, setOption] = useState('inicio');

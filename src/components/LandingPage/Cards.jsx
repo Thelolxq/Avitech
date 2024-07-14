@@ -1,8 +1,8 @@
 import React from 'react'
 import Card from './Card'
-import Eficiencia from '../assets/Eficiencia pollos.png'
-import Bienestar from '../assets/Bienestar pollos.png'
-import Monitoreo from '../assets/Monitoreo pollos.png'
+import Eficiencia from '../../assets/Eficiencia pollos.png'
+import Bienestar from '../../assets/Bienestar pollos.png'
+import Monitoreo from '../../assets/Monitoreo pollos.png'
 const Cards = () => {
   return (
     <>

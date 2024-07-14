@@ -1,7 +1,7 @@
 import React from "react";
-import BannerPollos from "../assets/Banner.png";
-import EllipseBanner from "../assets/EllipseBanner.png";
-import '../App.css'
+import BannerPollos from "../../assets/Banner.png";
+import EllipseBanner from "../../assets/EllipseBanner.png";
+import '../../App.css'
 const Banner = () => {
   return (
     <>

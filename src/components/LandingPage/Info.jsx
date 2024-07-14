@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import InfoPollos from '../assets/Banner pollos.png'
-import '../App.css'
+import InfoPollos from '../../assets/Banner pollos.png'
+import '../../App.css'
 import { motion } from 'framer-motion'
+import { Link } from 'react-router-dom'
 const Info = () => {
 
   const text = ['Efectividad', 'Perdidas', 'Ganancias']
@@ -47,7 +48,7 @@ const Info = () => {
           Con su tecnología avanzada, permite a los granjeros detectar y 
           solucionar problemas de manera proactiva, asegurando un 
           ambiente óptimo para el crecimiento y bienestar de los pollos.</p>
-          <button className='py-2 biryaniRegular text-sm mt-2 px-2 rounded textParrafColor bg-white'>Probar Avitech</button>
+          <Link to='/iniciar' className='py-2 biryaniRegular text-sm mt-2 px-2 rounded textParrafColor bg-white'>Probar Avitech</Link>
       </div>
     </div>
     </div>

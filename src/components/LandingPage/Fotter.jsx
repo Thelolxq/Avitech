@@ -1,6 +1,6 @@
 import React from 'react'
-import Instagram from '../assets/instagram.png'
-import Ubicacion from '../assets/marcador-de-posicion.png'
+import Instagram from '../../assets/instagram.png'
+import Ubicacion from '../../assets/marcador-de-posicion.png'
 const Fotter = () => {
   return (
     <>
