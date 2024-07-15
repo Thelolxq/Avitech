@@ -51,7 +51,7 @@ const IniciarSesion = () => {
 
   return (
     <div className="h-screen w-full flex">
-      <div className="w-1/2 h-full flex justify-center items-center">
+      <div className="lg:w-1/2 w-full h-full flex justify-center items-center">
         <div className="w-3/4 max-w-md p-8 rounded-lg">
           <h2 className="text-2xl text-center font-semibold mb-4">Iniciar Sesión</h2>
           <h3 className="text-sm text-center textParrafColor mb-6">Ingrese tu email para iniciar sesión</h3>
@@ -83,7 +83,7 @@ const IniciarSesion = () => {
           {data && <p className="text-green-500 font-bold mt-4">Inicio de sesión exitoso!</p>}
         </div>
       </div>
-      <div className="w-1/2 h-full"><img className='w-full h-full object-cover object-center' src={ImgBanner} alt="Banner de inicio de sesión" /></div>
+      <div className="w-1/2 lg:block hidden h-full"><img className='w-full h-full object-cover object-center' src={ImgBanner} alt="Banner de inicio de sesión" /></div>
     </div>
   );
 };

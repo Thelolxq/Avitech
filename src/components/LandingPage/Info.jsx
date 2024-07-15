@@ -24,7 +24,7 @@ const Info = () => {
     <div className='w-full lg:h-1/5 flex relative h-2/6 mt-44'>
     <div className='h-full relative'>
       <div className='bg-black bg-opacity-60 absolute w-full h-full z-10'></div>
-      <img className='h-full object-cover object-left' src={InfoPollos} alt="" />
+      <img className='min-h-96 h-full object-cover object-left' src={InfoPollos} alt="" />
     </div>
     <div className='w-full lg:flex-row   flex-col-reverse  flex absolute h-full justify-around '>
     
@@ -37,7 +37,7 @@ const Info = () => {
             <h2   className='text-black  biryaniRegular text-xl'>{text[currentInterval]}</h2></div>
       </motion.div>
       </div>
-      <div className='lg:w-2/3  h-full flex z-10 flex-col relative items-end lg:pr-56 pr-10 pl-10 py-20'>
+      <div className='lg:w-2/3 h-full flex z-10 flex-col relative items-end lg:pr-56 pr-10 pl-10 py-14'>
         <h2 className='bungee text-white '>Avitech<span className='bg-white w-16 h-1 block mx-auto'></span></h2>
         <p className='biryaniRegular text-xs  text-end pt-5 text-white'>Avitech es una aplicación para el cuidado de los pollos con una eficacia del 
           90%, optimizando tiempo, aumentando ganancias y 

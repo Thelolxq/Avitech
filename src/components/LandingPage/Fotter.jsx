@@ -4,7 +4,7 @@ import Ubicacion from '../../assets/marcador-de-posicion.png'
 const Fotter = () => {
   return (
     <>
-    <div className='w-full h-1/3 flex justify-between  flex-col items-center '>
+    <div className='w-full h-screen flex justify-between  flex-col items-center '>
     <div className='h-1/2 w-1/2 flex items-center my-auto gap-5 flex-col justify-center'>
         <h3 className='biryaniRegular text-lg textParrafColor'>Visitanos<span className='bg-black h-0.5 w-16 block mx-auto'></span></h3>
         <div className='flex flex-col justify-between text-center items-center h-1/2 text-xs lg:text-sm  text-neutral-800'>
