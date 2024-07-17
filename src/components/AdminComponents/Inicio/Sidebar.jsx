@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect, useContext } from 'react';
+import { Link, useLocation} from 'react-router-dom';
 import Burguer from '../../../icons/menu.png';
 import Inicio from '../../../icons/inicio.png';
 import Peso from '../../../icons/peso.png';
@@ -7,18 +7,24 @@ import Grafica from '../../../icons/barra-grafica.png';
 import Avitech from '../../../assets/logoAvitech.png';
 
 const Sidebar = ({ show, handleAnimation }) => {
-  const [optionSelected, setOptionSelected] = useState('inicio');
+  const [optionSelected, setOptionSelected] = useState('inicio')
+  const location = useLocation();
 
   useEffect(() => {
-    const storedOption = localStorage.getItem('optionSelected');
-    if (storedOption) {
-      setOptionSelected(storedOption);
+    const path = location.pathname;
+    if (path === "/dashboard") {
+      setOptionSelected("inicio");
+    } else if (path === "/pageGet") {
+      setOptionSelected("peso");
+    } else if (path === "/grafica") {
+      setOptionSelected("grafica");
     }
-  }, []);
+}, [location]);
+
 
   const handleSelected = (option) => {
     setOptionSelected(option);
-    localStorage.setItem('optionSelected', option);
+   
   };
 
   return (

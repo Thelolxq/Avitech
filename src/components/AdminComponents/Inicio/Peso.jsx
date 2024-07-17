@@ -45,7 +45,7 @@ const Peso = () => {
       const response = await axios.post('https://avitech-api.myftp.org/api/pesos', nuevosPesos, {
         headers: {
           'Token': `${token}`,
-          'apikey': 'integrador'
+          'apikey': 'l%!43Bki6hh$%3$Zb$orn9Q9Ke832mSL'
         },
       });
 

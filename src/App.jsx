@@ -4,17 +4,22 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import IniciarSesion from './components/SignIN/IniciarSesion'
 import Dahsboard from './components/AdminComponents/Inicio/Dahsboard'
 import PageGet from './components/AdminComponents/PageGet/PageGet'
+import PageGraf from './components/AdminComponents/Graficas/PageGraf'
 const App = () => {
   return (
     <>
+    
+
     <Router>
       <Routes>
         <Route path='/' element={<Page/>} />
         <Route path='/iniciar' element={<IniciarSesion/>}/>
         <Route path='/dashboard' element={<Dahsboard/>}/>
         <Route path='/pageGet' element={<PageGet/>}/>
+        <Route path='/grafica' element={<PageGraf/>}/>
       </Routes>
     </Router>
+ 
     </>
   )
 }

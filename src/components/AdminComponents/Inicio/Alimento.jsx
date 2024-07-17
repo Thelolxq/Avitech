@@ -47,7 +47,7 @@ const Alimento = () => {
       const response = await axios.post('https://avitech-api.myftp.org/api/alimentos', nuevoAlimento, {
         headers: {
           'Token': `${token}`,
-          'apikey': 'integrador'
+          'apikey': 'l%!43Bki6hh$%3$Zb$orn9Q9Ke832mSL'
         },
       });
 

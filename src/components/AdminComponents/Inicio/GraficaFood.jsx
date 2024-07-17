@@ -89,7 +89,7 @@ const Grafica = () => {
           });
         }
       } catch (error) {
-        setLoader(false)
+        setLoader(true)
         console.error('Error al obtener datos de la API:', error);
       }
     };
@@ -112,7 +112,7 @@ const Grafica = () => {
         
         <canvas ref={chartRef} ></canvas>
       )
-      }
+    }
     </div>
   );
 };

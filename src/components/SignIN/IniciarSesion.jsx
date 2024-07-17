@@ -22,7 +22,7 @@ const IniciarSesion = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const url = 'https://avitech-api.myftp.org/api/login';
-    const apiKey = 'integrador';
+    const apiKey = 'l%!43Bki6hh$%3$Zb$orn9Q9Ke832mSL';
 
     try {
       const response = await axios.post(url, {

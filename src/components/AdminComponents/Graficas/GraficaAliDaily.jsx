@@ -3,6 +3,7 @@ import Chart from 'chart.js/auto';
 import axios from 'axios';
 import ReactLoading from 'react-loading';
 
+
 const Grafica = () => {
   const chartRef = useRef(null);
   const chartInstance = useRef(null);
@@ -21,18 +22,22 @@ const Grafica = () => {
         }
 
         // Realizar la solicitud GET con el token de autorización
-        const response = await axios.get('https://practicaspoli.zapto.org/factibilidad/water', {
+        const response = await axios.get('https://avitech-api.myftp.org/api/consumo_alimentos', {
           headers: {
-            Authorization: `Bearer ${token}`
+            'Token': `${token}`,
+            'apikey': 'l%!43Bki6hh$%3$Zb$orn9Q9Ke832mSL'
+
           }
         });
         
-        const data = response.data;
+        const data = response.data
+        
         console.log(data)
+        
         setLoader(false)
         // Extraer las etiquetas y los valores del objeto devuelto
-        const labels = Object.keys(data["aguaConsumida"]);
-        const values = Object.values(data["aguaConsumida"]);
+        const labels = Object.keys(data["consumoAlimento"]);
+        const values = Object.values(data["consumoAlimento"]);
 
         if (chartRef && chartRef.current) {
           if (chartInstance.current) {
@@ -42,11 +47,11 @@ const Grafica = () => {
 
           const ctx = chartRef.current.getContext('2d');
           chartInstance.current = new Chart(ctx, {
-            type: 'line',
+            type: 'bar',
             data: {
               labels: labels, // Usar las etiquetas recibidas de la API
               datasets: [{
-                label: 'Agua consumido (litros)',
+                label: 'Alimento consumido diario (kg)',
                 data: values, // Usar los valores recibidos de la API
                 backgroundColor: [
                   'rgba(255, 99, 132, 0.2)',
@@ -89,8 +94,8 @@ const Grafica = () => {
           });
         }
       } catch (error) {
-        console.error('Error al obtener datos de la API:', error);
         setLoader(true)
+        console.error('Error al obtener datos de la API:', error);
       }
     };
 
@@ -105,15 +110,14 @@ const Grafica = () => {
   }, []);
 
   return (
-    <div className='h-full w-full flex justify-center items-center'>
-      {loader ?(
-          <ReactLoading type='bars' color='#000' height={50} width={50} />
-      ):(
+    <div className=' h-full w-full flex justify-center items-center'>
+      { loader ? (
+        <ReactLoading type='bars' color='#000' height={50} width={50} />
+      ) : (
         
         <canvas ref={chartRef} ></canvas>
       )
-
-      }
+    }
     </div>
   );
 };

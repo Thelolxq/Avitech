@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import ReactLoading from 'react-loading';
 
 const Vacuna = () => {
   const [vacunas, setVacunas] = useState([])
@@ -13,7 +14,7 @@ const Vacuna = () => {
         const response = await axios.get('https://avitech-api.myftp.org/api/vacunas',{
           headers:{
             'Token': `${token}`,
-            'apikey':'integrador'
+            'apikey':'l%!43Bki6hh$%3$Zb$orn9Q9Ke832mSL'
           }
         })
         setVacunas(response.data.vacunas)
@@ -21,14 +22,17 @@ const Vacuna = () => {
         setLoading(false)
       }catch(error){
         setError(error.message);
-        setLoading(false);
+        setLoading(true);
       }
     }
     fetchData();
   },[])
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div className='flex justify-center items-center h-full'>
+                <ReactLoading type='bars' color='#000' height={50} width={50} />
+ 
+    </div>;
   }
 
   if (error) {
