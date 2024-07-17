@@ -10,8 +10,8 @@ const Dahsboard = () => {
 
   return (
     <>
-        <div className='h-screen w-full bg-neutral-50 grid grid-cols-[auto,6fr]'>
-        <div className={`h-full py-2 pl-2 posicion ${show ? 'sidebar' : 'sidebar2'}`}>
+        <div className='h-screen  w-full bg-neutral-50 grid grid-cols-[auto,6fr]'>
+        <div className={`h-full py-2 pl-2 posicion duration-500 ease-in-out transition-all ${show ? 'sidebar' : 'sidebar2'}`}>
                  <Sidebar show={show} handleAnimation={handleAnimation}/>    
         </div>
             <div className='h-full p-2  w-full posicion2'> 

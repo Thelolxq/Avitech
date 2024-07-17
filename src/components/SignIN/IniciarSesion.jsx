@@ -21,7 +21,7 @@ const IniciarSesion = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const url = 'https://apitaintegrador.sytes.net:8443/api/login';
+    const url = 'https://avitech-api.myftp.org/api/login';
     const apiKey = 'integrador';
 
     try {

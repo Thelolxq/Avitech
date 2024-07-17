@@ -113,32 +113,13 @@ color: #FFF;
   box-shadow: 1px 0 25px rgb(167, 166, 166) ;
 }
 
-@keyframes animacion {
-  from {
-    width: 300px;
-  }
-  to {
-    width: 90px; 
-  }
-}
-
-@keyframes animacion2 {
-  from {
-    width: 90px; 
-  }
-  to {
-    width: 300px;
-  }
-}
 
 .sidebar {
-  animation: animacion 0.4s ease-in-out  forwards;
- 
+  width: 90px;
  
 }
 .sidebar2 {
-  animation: animacion2 0.4s ease-in-out forwards;
-  
+  width: 300px;
 }
 .grafica1{
   grid-column: 1/2;
@@ -161,11 +142,7 @@ canvas{
   max-width: 100%;
 }
 @media (max-width: 768px) {
-  span{
-    background: rgba(250, 204, 21, 0.671);
-    left: 10px;
-    position: relative;
-  }
+
   .sidebar,
   .sidebar2 {
     width: 90px; 

@@ -19,17 +19,17 @@ const Grafica = () => {
         }
 
         // Realizar la solicitud GET con el token de autorización
-        const response = await axios.get('https://practicaspoli.zapto.org/dht/hour', {
+        const response = await axios.get('https://practicaspoli.zapto.org/factibilidad/water', {
           headers: {
             Authorization: `Bearer ${token}`
           }
         });
         
         const data = response.data;
-
+        console.log(data)
         // Extraer las etiquetas y los valores del objeto devuelto
-        const labels = Object.keys(data["Alimento consumido"]);
-        const values = Object.values(data["Alimento consumido"]);
+        const labels = Object.keys(data["aguaConsumida"]);
+        const values = Object.values(data["aguaConsumida"]);
 
         if (chartRef && chartRef.current) {
           if (chartInstance.current) {
@@ -43,7 +43,7 @@ const Grafica = () => {
             data: {
               labels: labels, // Usar las etiquetas recibidas de la API
               datasets: [{
-                label: 'Alimento consumido (kg)',
+                label: 'Agua consumido (litros)',
                 data: values, // Usar los valores recibidos de la API
                 backgroundColor: [
                   'rgba(255, 99, 132, 0.2)',
@@ -101,7 +101,7 @@ const Grafica = () => {
   }, []);
 
   return (
-    <div className='shadowP rounded-xl h-full w-full'>
+    <div className='h-full w-full'>
       <canvas ref={chartRef} ></canvas>
     </div>
   );
