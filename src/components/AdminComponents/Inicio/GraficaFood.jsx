@@ -1,10 +1,13 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Chart from 'chart.js/auto';
 import axios from 'axios';
+import ReactLoading from 'react-loading';
+
 
 const Grafica = () => {
   const chartRef = useRef(null);
   const chartInstance = useRef(null);
+  const [loader, setLoader] = useState(true)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -26,7 +29,7 @@ const Grafica = () => {
         });
         
         const data = response.data;
-
+        setLoader(false)
         // Extraer las etiquetas y los valores del objeto devuelto
         const labels = Object.keys(data["Alimento consumido"]);
         const values = Object.values(data["Alimento consumido"]);
@@ -86,6 +89,7 @@ const Grafica = () => {
           });
         }
       } catch (error) {
+        setLoader(false)
         console.error('Error al obtener datos de la API:', error);
       }
     };
@@ -101,8 +105,14 @@ const Grafica = () => {
   }, []);
 
   return (
-    <div className=' h-full w-full'>
-      <canvas ref={chartRef} ></canvas>
+    <div className=' h-full w-full flex justify-center items-center'>
+      { loader ? (
+        <ReactLoading type='bars' color='#000' height={50} width={50} />
+      ) : (
+        
+        <canvas ref={chartRef} ></canvas>
+      )
+      }
     </div>
   );
 };

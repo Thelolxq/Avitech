@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import ReactLoading from 'react-loading';
 
 const PredicHour = () => {
   const [data, setData] = useState(null);
@@ -60,7 +61,7 @@ const PredicHour = () => {
           <h2>{getFirstFourDigits(data.prediccion_proximas_6_horas)} °C</h2>
         </div>
       ) : (
-        <p>Loading data...</p>
+        <ReactLoading type='spin' color='#000' height={50} width={50} />
       )}
     </div>
   );
