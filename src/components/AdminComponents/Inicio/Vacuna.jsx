@@ -68,7 +68,7 @@ const Vacuna = () => {
   return (
     <div className='shadowP flex flex-col justify-end w-1/3 h-3/4 rounded-xl'>
       <button
-        className={`bg-black w-full text-white py-2 duration-200 rounded-t-xl ${mostrarFormulario ? 'h-full' : 'h-12'}`}
+        className={`bg-black w-full text-white py-2 duration-200 rounded-xl ${mostrarFormulario ? 'h-full' : 'h-12'}`}
         onClick={toggleFormulario}
       >
         Agregar vacuna

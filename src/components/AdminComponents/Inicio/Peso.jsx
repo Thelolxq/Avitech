@@ -3,14 +3,21 @@ import axios from 'axios';
 
 const Peso = () => {
   const [mostrarFormulario, setMostrarFormulario] = useState(false);
-  const [peso, setPeso] = useState('');
-  const [pollos, setPollos] = useState('');
+  const [pollosPesados, setPollosPesados] = useState(0);
+  const [peso, setPeso] = useState(0);
   const refFormulario = useRef();
 
   useEffect(() => {
+  
+    const numeroPollos = JSON.parse(localStorage.getItem('pesos')) || [];
+    const medias = JSON.parse(localStorage.getItem('media')) || 0;
+    
+    setPollosPesados(numeroPollos.length); // Total de pollos pesados
+    setPeso(medias); // Media de pesos
+
     const handleClickOutside = (event) => {
       if (refFormulario.current && !refFormulario.current.contains(event.target)) {
-        setMostrarFormulario(false); // Cerrar formulario si se hizo clic fuera de él
+        setMostrarFormulario(false); 
       }
     };
 
@@ -21,55 +28,54 @@ const Peso = () => {
   }, []);
 
   const toggleFormulario = () => {
-    setMostrarFormulario(!mostrarFormulario); // Alternar visibilidad del formulario
+    setMostrarFormulario(!mostrarFormulario);
   };
 
   const handleClose = () => {
-    setMostrarFormulario(false); // Cerrar formulario al hacer clic en el botón "X"
+    setMostrarFormulario(false); 
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Obtener el token de localStorage
     const token = localStorage.getItem('token');
 
-    // Preparar el objeto de datos para enviar a la API
     const nuevosPesos = {
-      peso: parseFloat(peso),
-      pollosPesados: parseInt(pollos),
+      peso: parseFloat(peso), // Asegúrate de que sea un número
+      pollosPesados: parseInt(pollosPesados, 10), // Asegúrate de que sea un número entero
     };
 
     try {
-      // Realizar la solicitud POST a la API utilizando Axios
       const response = await axios.post('https://avitech-api.myftp.org/api/pesos', nuevosPesos, {
         headers: {
-          'Token': `${token}`,
+          'Token': token,
           'apikey': 'l%!43Bki6hh$%3$Zb$orn9Q9Ke832mSL'
         },
       });
 
-      // Limpiar campos y ocultar formulario después de agregar
-      setPeso('');
-      setPollos('');
       setMostrarFormulario(false);
 
       // Opcional: manejar la respuesta de la API
       console.log('Peso agregado:', response.data);
     } catch (error) {
-      console.error('Error:', error.response.data.message);
+      console.error('Error:', error.response ? error.response.data.message : error.message);
       // Manejar errores como desees
     }
   };
+  
 
   return (
     <div className='shadowP flex flex-col justify-end w-1/3 h-3/4 rounded-xl'>
-      <button
-        className={`bg-black text-white  w-full py-2 duration-200 rounded-t-xl ${mostrarFormulario ? 'h-full' : 'h-12'}`}
-        onClick={toggleFormulario}
-      >
-        Agregar peso
-      </button>
+      <div className='h-full flex flex-col justify-start p-2 items-center relative'>
+        <h2 className='text-lg font-bold mb-4'>Número de Pollos Pesados: {pollosPesados || 0}</h2>
+        <i>Media: {peso}</i>
+        <button
+          className={`bg-black text-white absolute bottom-0 w-full py-2 duration-200 rounded-xl ${mostrarFormulario ? 'h-full' : 'h-12'}`}
+          onClick={toggleFormulario}
+        >
+          Agregar peso
+        </button>
+      </div>
 
       {mostrarFormulario && (
         <div ref={refFormulario} className='bg-white border absolute w-1/ border-gray-300 p-4 rounded-b-xl mt-1'>
@@ -87,14 +93,14 @@ const Peso = () => {
           <form onSubmit={handleSubmit}>
             <div className='mb-4'>
               <label htmlFor='nombre' className='block text-sm font-medium text-gray-700'>
-                Peso
+                Media
               </label>
               <input
                 type='number'
                 id='nombre'
                 className='mt-1 block w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-1 focus:ring-green-500 focus:border-green-500 sm:text-sm'
-                value={peso}
-                onChange={(e) => setPeso(e.target.value)}
+                value={pollosPesados}
+                onChange={(e) => setPollosPesados(e.target.value)}
                 required
               />
             </div>
@@ -106,8 +112,8 @@ const Peso = () => {
                 type='number'
                 id='precio'
                 className='mt-1 block w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-1 focus:ring-green-500 focus:border-green-500 sm:text-sm'
-                value={pollos}
-                onChange={(e) => setPollos(e.target.value)}
+                value={peso}
+                onChange={(e) => setPeso(e.target.value)}
                 required
               />
             </div>

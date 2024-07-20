@@ -3,40 +3,37 @@ import Chart from 'chart.js/auto';
 import axios from 'axios';
 import ReactLoading from 'react-loading';
 
-
 const Grafica = () => {
   const chartRef = useRef(null);
   const chartInstance = useRef(null);
-  const [loader, setLoader] = useState(true)
+  const [loader, setLoader] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Obtener el token de localStorage
         const token = localStorage.getItem('token');
-
-        // Verificar si el token está presente
         if (!token) {
           console.error('No se encontró un token en localStorage');
           return;
         }
 
-        // Realizar la solicitud GET con el token de autorización
         const response = await axios.get('https://avitech-api.myftp.org/api/consumo_agua', {
           headers: {
-            Authorization: `Bearer ${token}`
+            'Token': `${token}`,
+            'apikey': 'l%!43Bki6hh$%3$Zb$orn9Q9Ke832mSL'
           }
         });
-        
-        const data = response.data;
-        setLoader(false)
-        // Extraer las etiquetas y los valores del objeto devuelto
-        const labels = Object.keys(data["Consumo_de_agua"]);
-        const values = Object.values(data["Consumo_de_agua"]);
+
+        const data = response.data.Consumo_de_agua; // Acceder al array de consumo de agua
+        console.log(data);
+
+        const labels = data.map(item => new Date(item.fecha).toLocaleDateString());
+        const values = data.map(item => item.cantidad);
+
+        setLoader(false);
 
         if (chartRef && chartRef.current) {
           if (chartInstance.current) {
-            // Destruir el gráfico existente si ya existe
             chartInstance.current.destroy();
           }
 
@@ -44,23 +41,23 @@ const Grafica = () => {
           chartInstance.current = new Chart(ctx, {
             type: 'bar',
             data: {
-              labels: labels, // Usar las etiquetas recibidas de la API
+              labels: labels,
               datasets: [{
-                label: 'Alimento consumido (kg)',
-                data: values, // Usar los valores recibidos de la API
+                label: 'Agua consumido diario (litros)',
+                data: values,
                 backgroundColor: [
                   'rgba(255, 99, 132, 0.2)',
-                  'rgba(54, 162, 235, 0.2)',
                   'rgba(255, 206, 86, 0.2)',
                   'rgba(75, 192, 192, 0.2)',
+                  'rgba(54, 162, 235, 0.2)',
                   'rgba(153, 102, 255, 0.2)',
                   'rgba(255, 159, 64, 0.2)'
                 ],
                 borderColor: [
                   'rgba(255, 99, 132, 1)',
-                  'rgba(54, 162, 235, 1)',
                   'rgba(255, 206, 86, 1)',
                   'rgba(75, 192, 192, 1)',
+                  'rgba(54, 162, 235, 1)',
                   'rgba(153, 102, 255, 1)',
                   'rgba(255, 159, 64, 1)'
                 ],
@@ -80,7 +77,7 @@ const Grafica = () => {
                 legend: {
                   labels: {
                     font: {
-                      size: 18, // Ajusta el tamaño de la letra del label aquí
+                      size: 18,
                     },
                   },
                 },
@@ -89,14 +86,13 @@ const Grafica = () => {
           });
         }
       } catch (error) {
-        setLoader(true)
+        setLoader(true);
         console.error('Error al obtener datos de la API:', error);
       }
     };
 
     fetchData();
 
-    // Función de limpieza al desmontar el componente
     return () => {
       if (chartInstance.current) {
         chartInstance.current.destroy();
@@ -105,14 +101,12 @@ const Grafica = () => {
   }, []);
 
   return (
-    <div className=' h-full w-full flex justify-center items-center'>
-      { loader ? (
+    <div className='h-full w-full flex justify-center items-center'>
+      {loader ? (
         <ReactLoading type='bars' color='#000' height={50} width={50} />
       ) : (
-        
-        <canvas ref={chartRef} ></canvas>
-      )
-    }
+        <canvas ref={chartRef}></canvas>
+      )}
     </div>
   );
 };

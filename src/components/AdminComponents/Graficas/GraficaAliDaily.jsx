@@ -3,11 +3,10 @@ import Chart from 'chart.js/auto';
 import axios from 'axios';
 import ReactLoading from 'react-loading';
 
-
 const Grafica = () => {
   const chartRef = useRef(null);
   const chartInstance = useRef(null);
-  const [loader, setLoader] = useState(true)
+  const [loader, setLoader] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -26,18 +25,17 @@ const Grafica = () => {
           headers: {
             'Token': `${token}`,
             'apikey': 'l%!43Bki6hh$%3$Zb$orn9Q9Ke832mSL'
-
           }
         });
-        
-        const data = response.data
-        
-        console.log(data)
-        
-        setLoader(false)
+
+        const data = response.data.data; // Acceder correctamente a la respuesta completa
+        console.log(data);
+
         // Extraer las etiquetas y los valores del objeto devuelto
-        const labels = Object.keys(data["consumoAlimento"]);
-        const values = Object.values(data["consumoAlimento"]);
+        const labels = data.map(item => new Date(item.fecha).toLocaleDateString());
+        const values = data.map(item => item.cantidad);
+
+        setLoader(false);
 
         if (chartRef && chartRef.current) {
           if (chartInstance.current) {
@@ -94,7 +92,7 @@ const Grafica = () => {
           });
         }
       } catch (error) {
-        setLoader(true)
+        setLoader(true);
         console.error('Error al obtener datos de la API:', error);
       }
     };
@@ -110,14 +108,12 @@ const Grafica = () => {
   }, []);
 
   return (
-    <div className=' h-full w-full flex justify-center items-center'>
-      { loader ? (
+    <div className='h-full w-full flex justify-center items-center'>
+      {loader ? (
         <ReactLoading type='bars' color='#000' height={50} width={50} />
       ) : (
-        
-        <canvas ref={chartRef} ></canvas>
-      )
-    }
+        <canvas ref={chartRef}></canvas>
+      )}
     </div>
   );
 };

@@ -37,7 +37,7 @@ const PredicHour = () => {
 
     const interval = setInterval(() => {
       fetchData();
-    }, 10000);
+    }, 3000000);
 
     return () => clearInterval(interval);
   }, []);
