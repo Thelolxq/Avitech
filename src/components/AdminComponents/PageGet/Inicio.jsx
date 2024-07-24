@@ -2,6 +2,7 @@ import React from 'react'
 import PesosPollos from './PesosPollos'
 import Vacuna from './Vacuna'
 import Alimento from './Alimento'
+import Ganancias from './Ganancias'
 
 const Inicio = () => {
   return (
@@ -14,6 +15,9 @@ const Inicio = () => {
         </div>
         <div className='pageGet3 flex-col p-4 flex shadowP h-full rounded-xl'>
             <Alimento/>
+        </div>
+        <div className='pageGet4 flex shadowP h-full rounded-xl p4 '>
+              <Ganancias/>
         </div>
       </div>
   )

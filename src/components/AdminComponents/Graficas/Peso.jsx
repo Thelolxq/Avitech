@@ -5,10 +5,10 @@ const Peso = () => {
   const [mostrarFormulario, setMostrarFormulario] = useState(false);
   const [pollosPesados, setPollosPesados] = useState(0);
   const [peso, setPeso] = useState(0);
+  const [mensaje, setMensaje] = useState({ tipo: '', texto: '' });
   const refFormulario = useRef();
 
   useEffect(() => {
-  
     const numeroPollos = JSON.parse(localStorage.getItem('pesos')) || [];
     const medias = JSON.parse(localStorage.getItem('media')) || 0;
     
@@ -53,16 +53,16 @@ const Peso = () => {
         },
       });
 
+      setMensaje({ tipo: 'exito', texto: 'Peso agregado exitosamente.' });
       setMostrarFormulario(false);
-
       // Opcional: manejar la respuesta de la API
       console.log('Peso agregado:', response.data);
     } catch (error) {
+      setMensaje({ tipo: 'error', texto: error.response ? error.response.data.message : 'Error al agregar peso.' });
       console.error('Error:', error.response ? error.response.data.message : error.message);
       // Manejar errores como desees
     }
   };
-  
 
   return (
     <div className='shadowP flex flex-col justify-end w-1/3 h-3/4 rounded-xl'>
@@ -76,6 +76,12 @@ const Peso = () => {
           Agregar peso
         </button>
       </div>
+
+      {mensaje.texto && (
+        <div className={`p-4 ${mensaje.tipo === 'exito' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'} border border-${mensaje.tipo === 'exito' ? 'green' : 'red'}-300 rounded-md`}>
+          {mensaje.texto}
+        </div>
+      )}
 
       {mostrarFormulario && (
         <div ref={refFormulario} className='bg-white border absolute w-1/ border-gray-300 p-4 rounded-b-xl mt-1'>

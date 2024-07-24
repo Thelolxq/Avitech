@@ -30,11 +30,28 @@ const PesosPollos = () => {
     fetchData();
   }, []);
 
-  if (loading) {
-    return <div className='flex justify-center items-center h-full'>
-                <ReactLoading type='bars' color='#000' height={50} width={50} />
+  const handleDelete = async (id) => {
+    const token = localStorage.getItem('token');
+    try {
+      await axios.delete(`https://avitech-api.myftp.org/api/pesos/${id}`, {
+        headers: {
+          'Token': `${token}`,
+          'apikey': 'l%!43Bki6hh$%3$Zb$orn9Q9Ke832mSL'
+        }
+      });
+      setPeso(peso.filter(item => item.id !== id));
+    } catch (error) {
+      console.error("Error deleting item: ", error);
+      setError('Error al eliminar el dato. Por favor, intente nuevamente.');
+    }
+  };
 
-    </div>;
+  if (loading) {
+    return (
+      <div className='flex justify-center items-center h-full'>
+        <ReactLoading type='bars' color='#000' height={50} width={50} />
+      </div>
+    );
   }
 
   if (error) {
@@ -49,7 +66,8 @@ const PesosPollos = () => {
           <thead>
             <tr>
               <th className='py-2 px-4 bg-yellow-400 rounded-l-xl text-left'>Peso</th>
-              <th className='py-2 px-4 bg-yellow-400 rounded-r-xl text-left'>Fecha</th>
+              <th className='py-2 px-4 bg-yellow-400 text-left'>Fecha</th>
+              <th className='py-2 px-4 bg-yellow-400 rounded-r-xl text-left'>Acciones</th>
             </tr>
           </thead>
           <tbody>
@@ -57,6 +75,14 @@ const PesosPollos = () => {
               <tr key={data.id} className='border-b'>
                 <td className='py-2 px-4'>{data.peso} kg</td>
                 <td className='py-2 px-4'>{data.fecha}</td>
+                <td className='py-2 px-4'>
+                  <button
+                    onClick={() => handleDelete(data.id)}
+                    className='bg-white border text-black px-2 py-1 rounded'
+                  >
+                    Eliminar
+                  </button>
+                </td>
               </tr>
             ))}
           </tbody>

@@ -11,31 +11,32 @@ const Alimento = () => {
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (refFormulario.current && !refFormulario.current.contains(event.target)) {
-        setMostrarFormulario(false); // Cerrar formulario si se hizo clic fuera de él
+        setMostrarFormulario(false); 
       }
     };
-
     document.addEventListener('mousedown', handleClickOutside);
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
 
+ 
+
   const toggleFormulario = () => {
-    setMostrarFormulario(!mostrarFormulario); // Alternar visibilidad del formulario
+    setMostrarFormulario(!mostrarFormulario); 
   };
 
   const handleClose = () => {
-    setMostrarFormulario(false); // Cerrar formulario al hacer clic en el botón "X"
+    setMostrarFormulario(false);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Obtener el token de localStorage
+    
     const token = localStorage.getItem('token');
 
-    // Preparar el objeto de datos para enviar a la API
+  
     const nuevoAlimento = {
       nombre,
       precio: parseFloat(precio),
@@ -43,7 +44,7 @@ const Alimento = () => {
     };
 
     try {
-      // Realizar la solicitud POST a la API utilizando Axios
+     
       const response = await axios.post('https://avitech-api.myftp.org/api/alimentos', nuevoAlimento, {
         headers: {
           'Token': `${token}`,
@@ -51,22 +52,23 @@ const Alimento = () => {
         },
       });
 
-      // Limpiar campos y ocultar formulario después de agregar
+      
       setNombre('');
       setPrecio('');
       setCantidad('');
       setMostrarFormulario(false);
 
-      // Opcional: manejar la respuesta de la API
+      
       console.log('Alimento agregado:', response.data);
     } catch (error) {
       console.error('Error:', error.message);
-      // Manejar errores como desees
+     
     }
   };
 
   return (
     <div className='shadowP flex flex-col justify-end w-1/3 h-3/4 rounded-xl'>
+      
       <button
         className={`bg-black w-full text-white py-2 duration-200 rounded-xl ${mostrarFormulario ? 'h-full' : 'h-12'}`}
         onClick={toggleFormulario}

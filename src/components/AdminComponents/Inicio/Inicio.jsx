@@ -2,9 +2,9 @@ import React from 'react';
 import GraficaFood from './GraficaFood';
 import GraficaWater from './GraficosWater';
 import PredicHour from './PredicHour';
-import Alimento from './Alimento'
-import Peso from './Peso';
-import Vacuna from './Vacuna';
+import GraficaAliDaily from './GraficaAliDaily'
+import GraficaWatDaily from './GraficaWatDaily'
+
 const Inicio = () => {
   return (
     <>
@@ -17,10 +17,9 @@ const Inicio = () => {
         </div>
         <div className='grafica3 flex-col p-4 flex shadowP h-full rounded-xl'>
           <PredicHour />
-          <div className='h-full gap-5 flex items-center'>
-          <Alimento/>
-          <Peso/>
-          <Vacuna/>
+          <div className='flex h-full items-center'>
+              <GraficaAliDaily/>
+              <GraficaWatDaily/>
           </div>
         </div>
       </div>
